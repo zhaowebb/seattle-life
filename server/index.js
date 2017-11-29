@@ -23,6 +23,7 @@ const findRestaurants = (lat, lng) => {
 	
 }
 
+
 const findHouses = (lat, lng, floorplan, isRent) => {
 	return new Promise((resolve, reject) => {
 		const con = mysql.createConnection({
@@ -114,6 +115,9 @@ const findCrimes = (lat, lng) => {
 	})
 }
 
+app.get('/', (req, res) => {
+	res.send("welcom to the app")
+})
 
 app.get('/:lat/:lng/:floorplan/:isRent', async (req, res) => {
 	let lat = parseFloat(req.params.lat)

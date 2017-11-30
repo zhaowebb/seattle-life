@@ -130,7 +130,7 @@ app.get('/:lat/:lng/:floorplan/:isRent', async (req, res) => {
 	let utilities = await findUtilities(lat, lng)
 	let crimes = await findCrimes(lat, lng)
 
-	res.setHeader('Access-Control-Allow-Origin', 'https://seattle-life.herokuapp.com');
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 	res.setHeader('Access-Control-Allow-Credentials', true);

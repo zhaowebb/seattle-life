@@ -130,7 +130,7 @@ app.get('/:lat/:lng/:floorplan/:isRent', async (req, res) => {
 	let utilities = await findUtilities(lat, lng)
 	let crimes = await findCrimes(lat, lng)
 
-	res.setHeader('Content-Type', 'application/json')
+	res.setHeader('Access-Control-Allow-Credentials', true);
 	
 	res.send({crimes, houses, utilities, restaurants})
 })

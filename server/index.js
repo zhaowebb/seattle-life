@@ -11,7 +11,7 @@ const findRestaurants = (lat, lng) => {
 		const restaurants = Restaurant.find({
 		lat: {$gt: lat - 2, $lt: lat + 2},
 		lng: {$gt: lng - 2, $lt: lng + 2},
-		category: {$in: ["Restaurants"]}
+		// category: {$in: ["Restaurants"]}
 	})
 		if(restaurants){
 			resolve(restaurants)

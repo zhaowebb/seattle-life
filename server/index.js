@@ -9,8 +9,8 @@ const deepcopy = require("deepcopy")
 const findRestaurants = (lat, lng) => {
 	return new Promise((resolve, reject) => {
 		const restaurants = Restaurant.find({
-		lat: {$gt: lat - 0.05, $lt: lat + 0.05},
-		lng: {$gt: lng - 0.05, $lt: lng + 0.05},
+		lat: {$gt: lat - 0.5, $lt: lat + 0.5},
+		lng: {$gt: lng - 0.5, $lt: lng + 0.5},
 		category: {$in: ["Restaurants"]}
 	})
 		if(restaurants){
@@ -102,6 +102,7 @@ const findCrimes = (lat, lng) => {
 			FROM Crime
 			WHERE lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
 			AND lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
+			AND timing >= '2017-10-01'
 		`
 
 		con.query(queryStatement, (err, response) => {

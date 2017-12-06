@@ -30,11 +30,11 @@ const findRestaurants = (lat, lng) => {
 const findHouses = (lat, lng, floorplan, isRent) => {
 	return new Promise((resolve, reject) => {
 		const con = mysql.createConnection({
-		host: "seattle-housing.cx6oha6hvscj.us-east-2.rds.amazonaws.com",
-		port: "3306",
-		database: "seattle_housing",
-		user: "cis550",
-		password: "550project"
+			host: "seattle-housing.cx6oha6hvscj.us-east-2.rds.amazonaws.com",
+			port: "3306",
+			database: "seattle_housing",
+			user: "cis550",
+			password: "550project"
 		})
 		let houseTransaction = "Rent"
 		if(isRent === 'false'){
@@ -46,8 +46,8 @@ const findHouses = (lat, lng, floorplan, isRent) => {
 			FROM House
 			JOIN ${houseTransaction}
 			ON House.id = ${houseTransaction}.id
-			WHERE House.lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
-			AND House.lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
+			WHERE House.lat BETWEEN ${lat - 0.02} AND ${lat + 0.02}
+			AND House.lng BETWEEN ${lng - 0.02} AND ${lng + 0.02}
 			AND House.floorplan = ${floorplan}
 		`
 

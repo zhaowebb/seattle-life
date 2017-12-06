@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3333
 const {Restaurant} = require('./db/models/restaurant')
 const mysql = require("mysql")
 const deepcopy = require("deepcopy")
+const radius = 0.02;
 
 const findRestaurants = (lat, lng) => {
 	return new Promise((resolve, reject) => {
@@ -46,8 +47,8 @@ const findHouses = (lat, lng, floorplan, isRent) => {
 			FROM House
 			JOIN ${houseTransaction}
 			ON House.id = ${houseTransaction}.id
-			WHERE House.lat BETWEEN ${lat - 0.02} AND ${lat + 0.02}
-			AND House.lng BETWEEN ${lng - 0.02} AND ${lng + 0.02}
+			WHERE House.lat BETWEEN ${lat - radius} AND ${lat + radius}
+			AND House.lng BETWEEN ${lng - radius} AND ${lng + radius}
 			AND House.floorplan = ${floorplan}
 		`
 
@@ -76,8 +77,8 @@ const findUtilities = (lat, lng) => {
 		let queryStatement = `
 			SELECT * 
 			FROM Utility
-			WHERE lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
-			AND lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
+			WHERE lat BETWEEN ${lat - radius} AND ${lat + radius}
+			AND lng BETWEEN ${lng - radius} AND ${lng + radius}
 		`
 
 		con.query(queryStatement, (err, response) => {
@@ -105,8 +106,8 @@ const findCrimes = (lat, lng) => {
 		let queryStatement = `
 			SELECT * 
 			FROM Crime
-			WHERE lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
-			AND lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
+			WHERE lat BETWEEN ${lat - radius} AND ${lat + radius}
+			AND lng BETWEEN ${lng - radius} AND ${lng + radius}
 			AND timing >= '2017-10-01'
 		`
 

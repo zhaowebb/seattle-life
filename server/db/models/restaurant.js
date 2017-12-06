@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 let Restaurant = mongoose.model('Restaurant', {
 	address: {
@@ -13,7 +13,6 @@ let Restaurant = mongoose.model('Restaurant', {
 		require: true,
 		minlength: 1,
 		trim: true
-
 	},
 
 	postcode:{
@@ -24,6 +23,7 @@ let Restaurant = mongoose.model('Restaurant', {
 	lat:{
 		type: Number
 	},
+
 	lng:{
 		type: Number
 	},
@@ -35,6 +35,6 @@ let Restaurant = mongoose.model('Restaurant', {
 	category: {
 		type: []
 	}
-	})
+});
 
-module.exports = {Restaurant}
+module.exports = {Restaurant};

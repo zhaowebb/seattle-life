@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3333
 const {Restaurant} = require('./db/models/restaurant')
 const mysql = require("mysql")
 const deepcopy = require("deepcopy")
-const radius = 0.02;
+const radius = 0.05;
 
 const findRestaurants = (lat, lng) => {
 	return new Promise((resolve, reject) => {

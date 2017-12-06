@@ -9,8 +9,8 @@ const deepcopy = require("deepcopy")
 const findRestaurants = (lat, lng) => {
 	return new Promise((resolve, reject) => {
 		const restaurants = Restaurant.find({
-		lat: {$gt: lat - 0.05, $lt: lat + 0.05},
-		lng: {$gt: lng - 0.05, $lt: lng + 0.05},
+		lat: {$gt: lat - 0.1, $lt: lat + 0.1},
+		lng: {$gt: lng - 0.1, $lt: lng + 0.1},
 		// lat: {$gt: 33.6 - 2, $lt: 33.6 + 2},
 		// lng: {$gt: -111.9 - 2, $lt: -111.9 + 2},
 

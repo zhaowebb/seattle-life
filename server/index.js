@@ -37,7 +37,7 @@ const findHouses = (lat, lng, floorplan, isRent) => {
 		password: "550project"
 		})
 		let houseTransaction = "Rent"
-		if(isRent === false){
+		if(isRent === 'false'){
 			houseTransaction = "Sale"
 		}
 

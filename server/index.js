@@ -5,13 +5,16 @@ const PORT = process.env.PORT || 3333
 const {Restaurant} = require('./db/models/restaurant')
 const mysql = require("mysql")
 const deepcopy = require("deepcopy")
-const radius = 0.05;
 
 const findRestaurants = (lat, lng) => {
 	return new Promise((resolve, reject) => {
 		const restaurants = Restaurant.find({
-		lat: {$gt: lat - radius, $lt: lat + radius},
-		lng: {$gt: lng - radius, $lt: lng + radius},
+		lat: {$gt: lat - 0.05, $lt: lat + 0.05},
+		lng: {$gt: lng - 0.05, $lt: lng + 0.05}
+		// lat: {$gt: 33.6 - 2, $lt: 33.6 + 2},
+		// lng: {$gt: -111.9 - 2, $lt: -111.9 + 2},
+
+		// category: {$in: ["Restaurants"]}
 	})
 		if(restaurants){
 			resolve(restaurants)
@@ -27,11 +30,11 @@ const findRestaurants = (lat, lng) => {
 const findHouses = (lat, lng, floorplan, isRent) => {
 	return new Promise((resolve, reject) => {
 		const con = mysql.createConnection({
-			host: "seattle-housing.cx6oha6hvscj.us-east-2.rds.amazonaws.com",
-			port: "3306",
-			database: "seattle_housing",
-			user: "cis550",
-			password: "550project"
+		host: "seattle-housing.cx6oha6hvscj.us-east-2.rds.amazonaws.com",
+		port: "3306",
+		database: "seattle_housing",
+		user: "cis550",
+		password: "550project"
 		})
 		let houseTransaction = "Rent"
 		if(isRent === 'false'){
@@ -43,8 +46,8 @@ const findHouses = (lat, lng, floorplan, isRent) => {
 			FROM House
 			JOIN ${houseTransaction}
 			ON House.id = ${houseTransaction}.id
-			WHERE House.lat BETWEEN ${lat - radius} AND ${lat + radius}
-			AND House.lng BETWEEN ${lng - radius} AND ${lng + radius}
+			WHERE House.lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
+			AND House.lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
 			AND House.floorplan = ${floorplan}
 		`
 
@@ -73,8 +76,8 @@ const findUtilities = (lat, lng) => {
 		let queryStatement = `
 			SELECT * 
 			FROM Utility
-			WHERE lat BETWEEN ${lat - radius} AND ${lat + radius}
-			AND lng BETWEEN ${lng - radius} AND ${lng + radius}
+			WHERE lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
+			AND lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
 		`
 
 		con.query(queryStatement, (err, response) => {
@@ -102,8 +105,8 @@ const findCrimes = (lat, lng) => {
 		let queryStatement = `
 			SELECT * 
 			FROM Crime
-			WHERE lat BETWEEN ${lat - radius} AND ${lat + radius}
-			AND lng BETWEEN ${lng - radius} AND ${lng + radius}
+			WHERE lat BETWEEN ${lat - 0.05} AND ${lat + 0.05}
+			AND lng BETWEEN ${lng - 0.05} AND ${lng + 0.05}
 			AND timing >= '2017-10-01'
 		`
 
